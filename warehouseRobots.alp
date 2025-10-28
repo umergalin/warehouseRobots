@@ -807,7 +807,7 @@ return freeChargingStation;]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[for (Bot b : bots) {
     traceln(b.getName());
-    b.busyTime.setValue(1);
+    b.busyTime.setValue(0);
     botsChart.addDataItem(
     	b.busyTime, 
     	b.getName(), 
@@ -3561,6 +3561,9 @@ send("cargoTransported", agent.currentTask);]]></Code>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[maximumCapacity]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[true]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[entityLocation]]></Name>
@@ -3967,6 +3970,9 @@ send("cargoTransported", agent.currentTask);]]></Code>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[maximumCapacity]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[true]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[entityLocation]]></Name>
@@ -4544,9 +4550,11 @@ for (Storage s: availableStorages) {
 if (!storedInAvailableStorage) {
 	traceln("груз " + agent + " в опасной зоне");
 	rescueTaskEnter.take(agent);
+} else {
+	storedCargoes.add(agent);
 }
 
-storedCargoes.add(agent);]]></Code>
+]]></Code>
 							</Value>
 						</Parameter>
 					</Parameters>
@@ -9291,8 +9299,9 @@ main.availableStorages.add(storage);
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[for (Agent agent: storage.getAgents()) {
 	Cargo cargo = (Cargo) agent;
-	traceln("агент внутри склада: " + cargo.getName());
-	main.rescueTaskEnter.take((Cargo) agent);
+	traceln("спасаю агент внутри склада: #" + cargo.getName());
+	main.storedCargoes.remove(cargo);
+	main.rescueTaskEnter.take(cargo);
 }]]></Body>
 				</Function>
 			</Functions>
