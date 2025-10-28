@@ -18,11 +18,10 @@
 		<ActiveObjectClass>
 			<Id>1760541570477</Id>
 			<Name><![CDATA[Main]]></Name>
-			<StartupCode><![CDATA[initChargingSlotsList();
-cargoGen.inject(8);
-
+			<StartupCode><![CDATA[initChargingStationsList();
 initBotsChart();
-initStorages();]]></StartupCode>
+
+traceln(storage1.capacity());]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1760541570482</Id>
@@ -115,24 +114,9 @@ initStorages();]]></StartupCode>
 			<ConnectionsId>1760541570478</ConnectionsId>
 			<Variables>
 				<Variable Class="CollectionVariable">
-					<Id>1760715666700</Id>
-					<Name><![CDATA[blockedPaths]]></Name>
-					<X>-360</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
-						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
-						<ElementClass><![CDATA[Object]]></ElementClass>
-						<ValueElementClass><![CDATA[String]]></ValueElementClass>
-					</Properties>
-
-				</Variable>
-				<Variable Class="CollectionVariable">
 					<Id>1761133489887</Id>
 					<Name><![CDATA[chargingStations]]></Name>
-					<X>210</X><Y>920</Y>
+					<X>20</X><Y>1040</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -147,7 +131,7 @@ initStorages();]]></StartupCode>
 				<Variable Class="CollectionVariable">
 					<Id>1761377071808</Id>
 					<Name><![CDATA[storedCargoes]]></Name>
-					<X>750</X><Y>50</Y>
+					<X>670</X><Y>1040</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -162,7 +146,7 @@ initStorages();]]></StartupCode>
 				<Variable Class="CollectionVariable">
 					<Id>1761406289066</Id>
 					<Name><![CDATA[availableStorages]]></Name>
-					<X>140</X><Y>1020</Y>
+					<X>530</X><Y>1040</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -172,7 +156,7 @@ initStorages();]]></StartupCode>
 						<ElementClass><![CDATA[Storage]]></ElementClass>
 						<ValueElementClass><![CDATA[String]]></ValueElementClass>
 						<CollectionInitializer Class="CodeValue">
-							<Code><![CDATA[{ storage1, storage2 }]]></Code>
+							<Code><![CDATA[{ storage1, storage2, storage3, storage4 }]]></Code>
 						</CollectionInitializer>
 					</Properties>
 
@@ -180,7 +164,7 @@ initStorages();]]></StartupCode>
 				<Variable Class="CollectionVariable">
 					<Id>1761542156422</Id>
 					<Name><![CDATA[warehouseSections]]></Name>
-					<X>80</X><Y>780</Y>
+					<X>1530</X><Y>910</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -190,15 +174,15 @@ initStorages();]]></StartupCode>
 						<ElementClass><![CDATA[RectangularNode]]></ElementClass>
 						<ValueElementClass><![CDATA[String]]></ValueElementClass>
 						<CollectionInitializer Class="CodeValue">
-							<Code><![CDATA[{ testFireZone, fireZone2 }]]></Code>
+							<Code><![CDATA[{ section1, section2, section3, section4 }]]></Code>
 						</CollectionInitializer>
 					</Properties>
 
 				</Variable>
 				<Variable Class="CollectionVariable">
 					<Id>1761547316624</Id>
-					<Name><![CDATA[cargoesToMove]]></Name>
-					<X>750</X><Y>20</Y>
+					<Name><![CDATA[cargoesUnstored]]></Name>
+					<X>530</X><Y>880</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -215,7 +199,7 @@ initStorages();]]></StartupCode>
 				<Connector>
 					<Id>1760864283453</Id>
 					<Name><![CDATA[connector]]></Name>
-					<X>570</X><Y>1190</Y>
+					<X>540</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -233,7 +217,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[exit]]></ItemName>
+						<ItemName><![CDATA[unloadRequsted]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -248,7 +232,7 @@ initStorages();]]></StartupCode>
 				<Connector>
 					<Id>1761133408978</Id>
 					<Name><![CDATA[connector4]]></Name>
-					<X>400</X><Y>1050</Y>
+					<X>110</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -256,7 +240,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[chargeTask]]></ItemName>
+						<ItemName><![CDATA[goingToCharge]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -266,7 +250,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[enter]]></ItemName>
+						<ItemName><![CDATA[chargeTaskEnter]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -275,13 +259,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-70</X><Y>0</Y></Point>
+						<Point><X>-80</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761133433733</Id>
 					<Name><![CDATA[connector5]]></Name>
-					<X>180</X><Y>200</Y>
+					<X>200</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -289,7 +273,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[delay]]></ItemName>
+						<ItemName><![CDATA[charging]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -299,7 +283,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[chargeTask]]></ItemName>
+						<ItemName><![CDATA[goingToCharge]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -307,14 +291,14 @@ initStorages();]]></StartupCode>
 						<ItemName><![CDATA[out]]></ItemName>
 					</TargetConnectableItemReference>
 					<Points>
-						<Point><X>320</X><Y>850</Y></Point>
-						<Point><X>260</X><Y>850</Y></Point>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>-50</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761144494559</Id>
 					<Name><![CDATA[connector6]]></Name>
-					<X>590</X><Y>1050</Y>
+					<X>290</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -322,7 +306,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[backToWork]]></ItemName>
+						<ItemName><![CDATA[botCharged]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -332,7 +316,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[delay]]></ItemName>
+						<ItemName><![CDATA[charging]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -347,7 +331,7 @@ initStorages();]]></StartupCode>
 				<Connector>
 					<Id>1761144587336</Id>
 					<Name><![CDATA[connector7]]></Name>
-					<X>180</X><Y>200</Y>
+					<X>390</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -355,7 +339,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[sink]]></ItemName>
+						<ItemName><![CDATA[chargeTaskEnd]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -365,7 +349,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[backToWork]]></ItemName>
+						<ItemName><![CDATA[botCharged]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -373,14 +357,14 @@ initStorages();]]></StartupCode>
 						<ItemName><![CDATA[out]]></ItemName>
 					</TargetConnectableItemReference>
 					<Points>
-						<Point><X>490</X><Y>850</Y></Point>
-						<Point><X>450</X><Y>850</Y></Point>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>-60</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761378620265</Id>
 					<Name><![CDATA[connector1]]></Name>
-					<X>140</X><Y>1210</Y>
+					<X>1540</X><Y>1030</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -388,7 +372,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[cargoRescueTaskEnter]]></ItemName>
+						<ItemName><![CDATA[rescueTaskEnter]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -398,7 +382,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[retrieve]]></ItemName>
+						<ItemName><![CDATA[rescuingCargo]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -407,13 +391,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>110</X><Y>0</Y></Point>
+						<Point><X>90</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761458701399</Id>
 					<Name><![CDATA[connector12]]></Name>
-					<X>240</X><Y>1550</Y>
+					<X>1030</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -431,7 +415,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[cargoLoadingTask]]></ItemName>
+						<ItemName><![CDATA[loadTaskEnter]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -440,13 +424,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-100</X><Y>0</Y></Point>
+						<Point><X>-90</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761458739139</Id>
 					<Name><![CDATA[connector13]]></Name>
-					<X>360</X><Y>1550</Y>
+					<X>1160</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -454,7 +438,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[sink1]]></ItemName>
+						<ItemName><![CDATA[cargoLoaded]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -473,13 +457,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-80</X><Y>0</Y></Point>
+						<Point><X>-90</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761462340798</Id>
 					<Name><![CDATA[connector10]]></Name>
-					<X>180</X><Y>1430</Y>
+					<X>1010</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -487,7 +471,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[timeMeasureStart]]></ItemName>
+						<ItemName><![CDATA[orderTaskTimerStart]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -506,13 +490,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-90</X><Y>0</Y></Point>
+						<Point><X>-70</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761462382485</Id>
 					<Name><![CDATA[connector11]]></Name>
-					<X>280</X><Y>1420</Y>
+					<X>1120</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -530,7 +514,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[timeMeasureStart]]></ItemName>
+						<ItemName><![CDATA[orderTaskTimerStart]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -539,13 +523,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-90</X><Y>10</Y></Point>
+						<Point><X>-100</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761462424774</Id>
 					<Name><![CDATA[connector14]]></Name>
-					<X>420</X><Y>1420</Y>
+					<X>1260</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -578,7 +562,7 @@ initStorages();]]></StartupCode>
 				<Connector>
 					<Id>1761462438003</Id>
 					<Name><![CDATA[connector15]]></Name>
-					<X>-180</X><Y>120</Y>
+					<X>1370</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -586,7 +570,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[exit2]]></ItemName>
+						<ItemName><![CDATA[orderCompleted]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -604,14 +588,14 @@ initStorages();]]></StartupCode>
 						<ItemName><![CDATA[out]]></ItemName>
 					</TargetConnectableItemReference>
 					<Points>
-						<Point><X>680</X><Y>1290</Y></Point>
-						<Point><X>610</X><Y>1300</Y></Point>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>-100</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761544098006</Id>
 					<Name><![CDATA[connector16]]></Name>
-					<X>840</X><Y>1120</Y>
+					<X>1630</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -638,13 +622,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-100</X><Y>-10</Y></Point>
+						<Point><X>-90</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761544106014</Id>
 					<Name><![CDATA[connector17]]></Name>
-					<X>960</X><Y>1130</Y>
+					<X>1760</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -652,7 +636,7 @@ initStorages();]]></StartupCode>
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[sink2]]></ItemName>
+						<ItemName><![CDATA[fireEventEnded]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
@@ -671,13 +655,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-80</X><Y>-10</Y></Point>
+						<Point><X>-90</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761544989112</Id>
 					<Name><![CDATA[connector18]]></Name>
-					<X>660</X><Y>1290</Y>
+					<X>630</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -704,13 +688,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-80</X><Y>0</Y></Point>
+						<Point><X>-90</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761545022920</Id>
 					<Name><![CDATA[connector19]]></Name>
-					<X>760</X><Y>1290</Y>
+					<X>760</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -737,13 +721,13 @@ initStorages();]]></StartupCode>
 					</TargetConnectableItemReference>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-60</X><Y>0</Y></Point>
+						<Point><X>-90</X><Y>0</Y></Point>
 					</Points>
 				</Connector>
 				<Connector>
 					<Id>1761562253414</Id>
 					<Name><![CDATA[connector2]]></Name>
-					<X>380</X><Y>1210</Y>
+					<X>1760</X><Y>1030</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -761,7 +745,7 @@ initStorages();]]></StartupCode>
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[retrieve]]></ItemName>
+						<ItemName><![CDATA[rescuingCargo]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -780,7 +764,7 @@ initStorages();]]></StartupCode>
 					<ReturnType><![CDATA[Attractor]]></ReturnType>
 					<Id>1761134728326</Id>
 					<Name><![CDATA[getFreeChargingStation]]></Name>
-					<X>210</X><Y>950</Y>
+					<X>200</X><Y>1080</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -803,8 +787,8 @@ return freeChargingStation;]]></Body>
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1761228939355</Id>
-					<Name><![CDATA[initChargingSlotsList]]></Name>
-					<X>210</X><Y>890</Y>
+					<Name><![CDATA[initChargingStationsList]]></Name>
+					<X>20</X><Y>1080</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -816,7 +800,7 @@ return freeChargingStation;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1761468749835</Id>
 					<Name><![CDATA[initBotsChart]]></Name>
-					<X>800</X><Y>820</Y>
+					<X>330</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -834,20 +818,9 @@ return freeChargingStation;]]></Body>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1761540823985</Id>
-					<Name><![CDATA[initStorages]]></Name>
-					<X>860</X><Y>920</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1761558913702</Id>
 					<Name><![CDATA[updateReservations]]></Name>
-					<X>950</X><Y>930</Y>
+					<X>1530</X><Y>950</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -856,8 +829,8 @@ return freeChargingStation;]]></Body>
 	traceln("В складе " + s.getName() + " зарезервированно " + s.nReservedCells() + " ячеек");
 }
 
-List<Cargo> cargoes = new ArrayList<>(cargoesToMove);
-cargoesToMove.clear();
+List<Cargo> cargoes = new ArrayList<>(cargoesUnstored);
+cargoesUnstored.clear();
 
 for(Cargo cargo: cargoes) {
 	// удаление из очереди задач
@@ -905,8 +878,8 @@ for(Storage s: availableStorages) {
 				<EmbeddedObject>
 					<Id>1760609966919</Id>
 					<Name><![CDATA[transporterFleet]]></Name>
-					<X>340</X><Y>860</Y>
-					<Label><X>-35</X><Y>-25</Y></Label>
+					<X>110</X><Y>830</Y>
+					<Label><X>-25</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -949,7 +922,7 @@ for(Storage s: availableStorages) {
 						<Parameter>
 							<Name><![CDATA[homeNodes]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[{ node }]]></Code>
+								<Code><![CDATA[{ chargingZone }]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -1032,6 +1005,10 @@ for(Storage s: availableStorages) {
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[height]]></Name>
+							<Value Class="CodeUnitValue">
+								<Code><![CDATA[0.25]]></Code>
+								<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[maximumSpeed]]></Name>
@@ -1089,9 +1066,23 @@ for(Storage s: availableStorages) {
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onSeize]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[if (!(agent instanceof ChargeTask)) {
+	unit.workStartTime = time();
+	traceln("Транспортер " + unit + " захвачен в: " + unit.workStartTime);
+}]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onRelease]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[if (!(agent instanceof ChargeTask)) {
+	double busyInterval = time() - unit.workStartTime;
+	unit.busyTime.setValue(unit.busyTime.getValue() + busyInterval);
+	
+	traceln("Транспортер " + unit + " освобожден через: " + busyInterval);
+}]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onTransporterStateChanged]]></Name>
@@ -1140,7 +1131,7 @@ for(Storage s: availableStorages) {
 				<EmbeddedObject>
 					<Id>1760613595547</Id>
 					<Name><![CDATA[cargoGen]]></Name>
-					<X>540</X><Y>1180</Y>
+					<X>510</X><Y>820</Y>
 					<Label><X>-5</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1374,7 +1365,7 @@ for(Storage s: availableStorages) {
 				<EmbeddedObject>
 					<Id>1760616501690</Id>
 					<Name><![CDATA[transporterControl]]></Name>
-					<X>470</X><Y>850</Y>
+					<X>250</X><Y>830</Y>
 					<Label><X>-60</X><Y>-35</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>false</PresentationFlag>
@@ -1464,9 +1455,9 @@ for(Storage s: availableStorages) {
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1760864129535</Id>
-					<Name><![CDATA[exit]]></Name>
-					<X>680</X><Y>1180</Y>
-					<Label><X>-10</X><Y>-15</Y></Label>
+					<Name><![CDATA[unloadRequsted]]></Name>
+					<X>650</X><Y>820</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1516,9 +1507,9 @@ for(Storage s: availableStorages) {
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761126069120</Id>
-					<Name><![CDATA[delay]]></Name>
-					<X>500</X><Y>1030</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
+					<Name><![CDATA[charging]]></Name>
+					<X>200</X><Y>970</Y>
+					<Label><X>-5</X><Y>-15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1607,9 +1598,9 @@ for(Storage s: availableStorages) {
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761133367632</Id>
-					<Name><![CDATA[enter]]></Name>
-					<X>310</X><Y>1040</Y>
-					<Label><X>-5</X><Y>-15</Y></Label>
+					<Name><![CDATA[chargeTaskEnter]]></Name>
+					<X>10</X><Y>980</Y>
+					<Label><X>-30</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1731,9 +1722,9 @@ for(Storage s: availableStorages) {
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761133405321</Id>
-					<Name><![CDATA[chargeTask]]></Name>
-					<X>400</X><Y>1040</Y>
-					<Label><X>-15</X><Y>-25</Y></Label>
+					<Name><![CDATA[goingToCharge]]></Name>
+					<X>110</X><Y>980</Y>
+					<Label><X>-25</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -2133,8 +2124,8 @@ traceln(" go charging for " + unit.getName());
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761144490032</Id>
-					<Name><![CDATA[backToWork]]></Name>
-					<X>590</X><Y>1040</Y>
+					<Name><![CDATA[botCharged]]></Name>
+					<X>290</X><Y>980</Y>
 					<Label><X>-20</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2251,9 +2242,9 @@ traceln(" go charging for " + unit.getName());
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761144585492</Id>
-					<Name><![CDATA[sink]]></Name>
-					<X>670</X><Y>1040</Y>
-					<Label><X>-10</X><Y>-20</Y></Label>
+					<Name><![CDATA[chargeTaskEnd]]></Name>
+					<X>390</X><Y>980</Y>
+					<Label><X>-35</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -2304,7 +2295,7 @@ traceln(" go charging for " + unit.getName());
 				<EmbeddedObject>
 					<Id>1761225932521</Id>
 					<Name><![CDATA[bots]]></Name>
-					<X>620</X><Y>870</Y>
+					<X>20</X><Y>830</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2351,9 +2342,9 @@ traceln(" go charging for " + unit.getName());
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761378111721</Id>
-					<Name><![CDATA[cargoRescueTaskEnter]]></Name>
-					<X>120</X><Y>1200</Y>
-					<Label><X>-40</X><Y>-20</Y></Label>
+					<Name><![CDATA[rescueTaskEnter]]></Name>
+					<X>1520</X><Y>1020</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -2469,9 +2460,9 @@ traceln(" go charging for " + unit.getName());
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761378611660</Id>
-					<Name><![CDATA[retrieve]]></Name>
-					<X>250</X><Y>1200</Y>
-					<Label><X>-10</X><Y>-25</Y></Label>
+					<Name><![CDATA[rescuingCargo]]></Name>
+					<X>1630</X><Y>1020</Y>
+					<Label><X>-20</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -2814,8 +2805,8 @@ traceln(" go charging for " + unit.getName());
 				<EmbeddedObject>
 					<Id>1761379775154</Id>
 					<Name><![CDATA[cargoRescued]]></Name>
-					<X>380</X><Y>1200</Y>
-					<Label><X>-30</X><Y>-15</Y></Label>
+					<X>1760</X><Y>1020</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -2865,9 +2856,9 @@ traceln(" go charging for " + unit.getName());
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761382014460</Id>
-					<Name><![CDATA[cargoLoadingTask]]></Name>
-					<X>120</X><Y>1540</Y>
-					<Label><X>-30</X><Y>-20</Y></Label>
+					<Name><![CDATA[loadTaskEnter]]></Name>
+					<X>920</X><Y>980</Y>
+					<Label><X>-25</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -2983,9 +2974,9 @@ traceln(" go charging for " + unit.getName());
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761382019798</Id>
-					<Name><![CDATA[sink1]]></Name>
-					<X>360</X><Y>1540</Y>
-					<Label><X>-10</X><Y>-20</Y></Label>
+					<Name><![CDATA[cargoLoaded]]></Name>
+					<X>1160</X><Y>980</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3040,7 +3031,7 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761382034433</Id>
 					<Name><![CDATA[movingToLoadArea]]></Name>
-					<X>240</X><Y>1540</Y>
+					<X>1030</X><Y>980</Y>
 					<Label><X>-30</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3372,8 +3363,8 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761462304261</Id>
 					<Name><![CDATA[orderTask]]></Name>
-					<X>70</X><Y>1420</Y>
-					<Label><X>-5</X><Y>-15</Y></Label>
+					<X>920</X><Y>820</Y>
+					<Label><X>-15</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3489,8 +3480,8 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761462336747</Id>
-					<Name><![CDATA[timeMeasureStart]]></Name>
-					<X>180</X><Y>1410</Y>
+					<Name><![CDATA[orderTaskTimerStart]]></Name>
+					<X>1010</X><Y>810</Y>
 					<Label><X>-40</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3539,7 +3530,7 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761462380931</Id>
 					<Name><![CDATA[waitingForLoading]]></Name>
-					<X>280</X><Y>1400</Y>
+					<X>1120</X><Y>810</Y>
 					<Label><X>-30</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3624,8 +3615,8 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761462418259</Id>
 					<Name><![CDATA[orderTaskTotalTime]]></Name>
-					<X>400</X><Y>1400</Y>
-					<Label><X>-35</X><Y>-15</Y></Label>
+					<X>1240</X><Y>810</Y>
+					<Label><X>-30</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3644,7 +3635,7 @@ send("cargoTransported", agent.currentTask);]]></Code>
 						<Parameter>
 							<Name><![CDATA[startObjects]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[{ timeMeasureStart }]]></Code>
+								<Code><![CDATA[{ orderTaskTimerStart }]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -3681,9 +3672,9 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761462431437</Id>
-					<Name><![CDATA[exit2]]></Name>
-					<X>500</X><Y>1400</Y>
-					<Label><X>-10</X><Y>-15</Y></Label>
+					<Name><![CDATA[orderCompleted]]></Name>
+					<X>1370</X><Y>820</Y>
+					<Label><X>-40</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3731,7 +3722,7 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761463392178</Id>
 					<Name><![CDATA[orders]]></Name>
-					<X>80</X><Y>1080</Y>
+					<X>930</X><Y>880</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3779,8 +3770,8 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761540660719</Id>
 					<Name><![CDATA[fireEventEnter]]></Name>
-					<X>720</X><Y>1100</Y>
-					<Label><X>-5</X><Y>-15</Y></Label>
+					<X>1520</X><Y>820</Y>
+					<Label><X>-25</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3897,7 +3888,7 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761542555304</Id>
 					<Name><![CDATA[fireEvents]]></Name>
-					<X>0</X><Y>920</Y>
+					<X>1530</X><Y>870</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3945,8 +3936,8 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761544091657</Id>
 					<Name><![CDATA[storageRecoveryWait]]></Name>
-					<X>840</X><Y>1100</Y>
-					<Label><X>-40</X><Y>-10</Y></Label>
+					<X>1630</X><Y>810</Y>
+					<Label><X>-35</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -4029,9 +4020,9 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1761544104519</Id>
-					<Name><![CDATA[sink2]]></Name>
-					<X>960</X><Y>1120</Y>
-					<Label><X>-10</X><Y>-20</Y></Label>
+					<Name><![CDATA[fireEventEnded]]></Name>
+					<X>1760</X><Y>820</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -4082,8 +4073,8 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761544952599</Id>
 					<Name><![CDATA[unloadTaskEnter]]></Name>
-					<X>560</X><Y>1280</Y>
-					<Label><X>-40</X><Y>-20</Y></Label>
+					<X>520</X><Y>980</Y>
+					<Label><X>-35</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -4162,7 +4153,7 @@ send("cargoTransported", agent.currentTask);]]></Code>
 						<Parameter>
 							<Name><![CDATA[onEnter]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[cargoesToMove.add((Cargo) agent);]]></Code>
+								<Code><![CDATA[cargoesUnstored.add((Cargo) agent);]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -4200,8 +4191,8 @@ send("cargoTransported", agent.currentTask);]]></Code>
 				<EmbeddedObject>
 					<Id>1761544986867</Id>
 					<Name><![CDATA[movingToStorage]]></Name>
-					<X>660</X><Y>1280</Y>
-					<Label><X>-30</X><Y>-30</Y></Label>
+					<X>630</X><Y>980</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -4453,7 +4444,7 @@ send("cargoTransported", agent.currentTask);]]></Code>
 							<Name><![CDATA[onLoadingStart]]></Name>
 							<Value Class="CodeValue">
 								<Code><![CDATA[// traceln("начало погрузки");
-cargoesToMove.remove((Cargo) agent);]]></Code>
+cargoesUnstored.remove((Cargo) agent);]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -4521,8 +4512,8 @@ cargoesToMove.remove((Cargo) agent);]]></Code>
 				<EmbeddedObject>
 					<Id>1761545019021</Id>
 					<Name><![CDATA[cargoUnloaded]]></Name>
-					<X>760</X><Y>1280</Y>
-					<Label><X>-10</X><Y>-15</Y></Label>
+					<X>760</X><Y>980</Y>
+					<Label><X>-35</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -4552,7 +4543,7 @@ for (Storage s: availableStorages) {
 
 if (!storedInAvailableStorage) {
 	traceln("груз " + agent + " в опасной зоне");
-	cargoRescueTaskEnter.take(agent);
+	rescueTaskEnter.take(agent);
 }
 
 storedCargoes.add(agent);]]></Code>
@@ -4603,9 +4594,9 @@ storedCargoes.add(agent);]]></Code>
 				<Control Type="Window3D">
 					<Id>1760541956868</Id>
 					<Name><![CDATA[window3d]]></Name>
-					<X>1060</X><Y>620</Y>
-					<Width>500</Width>
-					<Height>300</Height>
+					<X>1760</X><Y>0</Y>
+					<Width>1040</Width>
+					<Height>617.5</Height>
 					<MakeDefaultViewArea>true</MakeDefaultViewArea>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<ShowLabel>false</ShowLabel>
@@ -4613,342 +4604,10 @@ storedCargoes.add(agent);]]></Code>
 					<NavigationType>full</NavigationType>
 					<FarClippingDistance>2000</FarClippingDistance>
 				</Control>
-				<Rectangle>
-					<Id>1760542016011</Id>
-					<Name><![CDATA[rectangle]]></Name>
-					<X>1760</X><Y>20</Y>
-					<Label><X>10</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>0</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-16777216</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>1000</Width>
-					<Height>600</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-657931</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<RackStorage>
-					<Id>1760611216063</Id>
-					<Name><![CDATA[storage]]></Name>
-					<X>120</X><Y>60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<EmbeddedObject>
-						<Id>1760611216067</Id>
-						<ActiveObjectClass>
-							<PackageName><![CDATA[com.anylogic.libraries.modules.rack_system_module]]></PackageName>
-							<ClassName><![CDATA[StorageDescriptor]]></ClassName>
-						</ActiveObjectClass>
-						<GenericParameterSubstitute>
-							<GenericParameterSubstituteReference>
-								<PackageName><![CDATA[com.anylogic.libraries.modules.rack_system_module]]></PackageName>
-								<ClassName><![CDATA[StorageDescriptor]]></ClassName>
-								<ItemName><![CDATA[1617869257419]]></ItemName>
-							</GenericParameterSubstituteReference>
-						</GenericParameterSubstitute>
-						<Parameters>
-							<Parameter>
-								<Name><![CDATA[resourceLiftingSpeed]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[numberOfCellsPerSlot]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[accessSideAdd]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[cellCapacity]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[specifiedInslotSpeed]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[inslotSpeed]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[restrictedAisleAccess]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[aisleCapacityRestriction]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onAgentStorage]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onAgentRetrieval]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onReserve]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onRelease]]></Name>
-							</Parameter>
-						</Parameters>
-						<ReplicationFlag>false</ReplicationFlag>
-						<Replication Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
-						</Replication>
-						<CollectionType>ARRAY_LIST_BASED</CollectionType>
-						<InitialLocationType>XYZ</InitialLocationType>
-						<ColumnCode Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</ColumnCode>
-						<RowCode Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</RowCode>
-						<LocationNameCode Class="CodeValue">
-							<Code><![CDATA[""]]></Code>
-						</LocationNameCode>
-						<InitializationType>SPECIFIED_NUMBER</InitializationType>
-						<InitializationDatabaseTableQuery>
-							<Id>1760611216066</Id>
-							<TableReference>
-							</TableReference>
-						</InitializationDatabaseTableQuery>
-						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-						<QuantityColumn>
-						</QuantityColumn>
-					</EmbeddedObject>
-					<Height Class="UnitValue">
-						<Value Class="Double">2</Value>
-						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
-					</Height>
-					<Width Class="UnitValue">
-						<Value Class="Double">1</Value>
-						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
-					</Width>
-					<LeftPassage Class="UnitValue">
-						<Value Class="Double">1.8</Value>
-						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
-					</LeftPassage>
-					<AisleWidth Class="UnitValue">
-						<Value Class="Double">4</Value>
-						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
-					</AisleWidth>
-					<SlotDepth Class="UnitValue">
-						<Value Class="Double">1</Value>
-						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
-					</SlotDepth>
-					<CellWidth Class="UnitValue">
-						<Value Class="Double">1</Value>
-						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
-					</CellWidth>
-					<ShelfHeight Class="UnitValue">
-						<Value Class="Double">1</Value>
-						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
-					</ShelfHeight>
-					<PlaceAtSides>false</PlaceAtSides>
-					<OddAtTheLeft>true</OddAtTheLeft>
-					<FillColor>-1644806</FillColor>
-					<LineColor>-14774017</LineColor>
-					<Rotation>0.0</Rotation>
-					<Angle>0.0</Angle>
-					<Flipped>false</Flipped>
-					<IsObstacle>true</IsObstacle>
-					<UnitsDefinition>NUMBER_OF_UNITS</UnitsDefinition>
-					<NumberOfUnits>2</NumberOfUnits>
-					<BaysDefinition>NUMBER_OF_BAYS</BaysDefinition>
-					<NumberOfBays>2</NumberOfBays>
-					<NumberOfCells>1</NumberOfCells>
-					<NumberOfShelves>4</NumberOfShelves>
-					<RackType>SELECTIVE</RackType>
-					<SkuFlow>LIFO</SkuFlow>
-					<Configuration>BACK_TO_BACK</Configuration>
-					<DrawLegs>true</DrawLegs>
-					<CellsBetweenLegs>2</CellsBetweenLegs>
-					<SimplifiedAnimation>false</SimplifiedAnimation>
-					
-				</RackStorage>
-				<RectangleNode>
-					<Id>1760717011710</Id>
-					<Name><![CDATA[node]]></Name>
-					<X>720</X><Y>200</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<EmbeddedObject>
-						<Id>1760717011714</Id>
-						<ActiveObjectClass>
-							<PackageName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></PackageName>
-							<ClassName><![CDATA[AreaNodeDescriptor]]></ClassName>
-						</ActiveObjectClass>
-						<GenericParameterSubstitute>
-							<GenericParameterSubstituteReference>
-								<PackageName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></PackageName>
-								<ClassName><![CDATA[AreaNodeDescriptor]]></ClassName>
-								<ItemName><![CDATA[1574694148121]]></ItemName>
-							</GenericParameterSubstituteReference>
-						</GenericParameterSubstitute>
-						<Parameters>
-							<Parameter>
-								<Name><![CDATA[appliedClass]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[speedRestricted]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[maxSpeed]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[accessRestricted]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[accessRestrictionType]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[accessRestrictionCondition]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[capacity]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[throughput]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[schedule]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[avoidedIfClosed]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onEnter]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onEnterDenied]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onExit]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onOpen]]></Name>
-							</Parameter>
-							<Parameter>
-								<Name><![CDATA[onClose]]></Name>
-							</Parameter>
-						</Parameters>
-						<ReplicationFlag>false</ReplicationFlag>
-						<Replication Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
-						</Replication>
-						<CollectionType>ARRAY_LIST_BASED</CollectionType>
-						<InitialLocationType>XYZ</InitialLocationType>
-						<ColumnCode Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</ColumnCode>
-						<RowCode Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</RowCode>
-						<LocationNameCode Class="CodeValue">
-							<Code><![CDATA[""]]></Code>
-						</LocationNameCode>
-						<InitializationType>SPECIFIED_NUMBER</InitializationType>
-						<InitializationDatabaseTableQuery>
-							<Id>1760717011713</Id>
-							<TableReference>
-							</TableReference>
-						</InitializationDatabaseTableQuery>
-						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
-						<QuantityColumn>
-						</QuantityColumn>
-					</EmbeddedObject>
-					<LineColor>-14774017</LineColor>
-					<FillColor/>
-					<LineWidth>1</LineWidth>
-					<LineMaterial>null</LineMaterial>
-					<FillMaterial>null</FillMaterial>
-					<LineStyle>DASHED</LineStyle>
-					<AttractorsLayout>random</AttractorsLayout>
-
-			<Presentation>
-				<Attractor>
-					<Id>1761545654451</Id>
-					<Name><![CDATA[attractor10]]></Name>
-					<X>790</X><Y>210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761545654454</Id>
-					<Name><![CDATA[attractor11]]></Name>
-					<X>790</X><Y>260</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761545654457</Id>
-					<Name><![CDATA[attractor12]]></Name>
-					<X>790</X><Y>320</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761545654460</Id>
-					<Name><![CDATA[attractor26]]></Name>
-					<X>790</X><Y>370</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-			</Presentation>
-
-					<Sloped>false</Sloped>
-					<Slope>
-						<Id>1760717011708</Id>
-						<Name><![CDATA[node]]></Name>
-						<X>0</X><Y>10</Y>
-						<PublicFlag>false</PublicFlag>
-						<PresentationFlag>true</PresentationFlag>
-						<ShowLabel>true</ShowLabel>
-						<Dx>20</Dx>
-						<Dy>0</Dy>
-						<Dz>0</Dz>
-						<AngleX>30</AngleX>
-						<AngleZ>0</AngleZ>
-						<SlopeType>angle</SlopeType>	
-					</Slope>
-
-					<Width>140</Width>
-					<Height>180</Height>
-					<Rotation>0.0</Rotation>
-				</RectangleNode>
 				<RectangleNode>
 					<Id>1760864397416</Id>
 					<Name><![CDATA[unloadArea]]></Name>
-					<X>850</X><Y>50</Y>
+					<X>1120</X><Y>70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5052,7 +4711,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761569332465</Id>
 					<Name><![CDATA[attractor]]></Name>
-					<X>890</X><Y>90</Y>
+					<X>1145</X><Y>95</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5064,7 +4723,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761569332468</Id>
 					<Name><![CDATA[attractor1]]></Name>
-					<X>950</X><Y>90</Y>
+					<X>1220</X><Y>95</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5076,7 +4735,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761569332471</Id>
 					<Name><![CDATA[attractor2]]></Name>
-					<X>950</X><Y>150</Y>
+					<X>1220</X><Y>170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5088,7 +4747,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761569332474</Id>
 					<Name><![CDATA[attractor3]]></Name>
-					<X>890</X><Y>150</Y>
+					<X>1145</X><Y>170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5115,21 +4774,21 @@ storedCargoes.add(agent);]]></Code>
 						<SlopeType>angle</SlopeType>	
 					</Slope>
 
-					<Width>140</Width>
-					<Height>140</Height>
+					<Width>125</Width>
+					<Height>125</Height>
 					<Rotation>0.0</Rotation>
 				</RectangleNode>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1760864643990</Id>
 					<Name><![CDATA[inject]]></Name>
-					<X>940</X><Y>620</Y>
+					<X>0</X><Y>550</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="200" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -5137,13 +4796,13 @@ storedCargoes.add(agent);]]></Code>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[inject(8)]]></LabelText>
+						<LabelText><![CDATA[Добавить грузы]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<RectangleNode>
 					<Id>1761133649358</Id>
 					<Name><![CDATA[chargingZone]]></Name>
-					<X>460</X><Y>270</Y>
+					<X>960</X><Y>280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5290,7 +4949,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761487729514</Id>
 					<Name><![CDATA[attractor21]]></Name>
-					<X>480</X><Y>340</Y>
+					<X>985</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5302,7 +4961,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761487729517</Id>
 					<Name><![CDATA[attractor22]]></Name>
-					<X>530</X><Y>290</Y>
+					<X>1060</X><Y>305</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5314,7 +4973,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761487729520</Id>
 					<Name><![CDATA[attractor23]]></Name>
-					<X>580</X><Y>340</Y>
+					<X>1135</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5326,7 +4985,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761487729523</Id>
 					<Name><![CDATA[attractor24]]></Name>
-					<X>530</X><Y>340</Y>
+					<X>1060</X><Y>380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5338,7 +4997,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761487729526</Id>
 					<Name><![CDATA[attractor25]]></Name>
-					<X>530</X><Y>390</Y>
+					<X>1060</X><Y>455</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5365,14 +5024,14 @@ storedCargoes.add(agent);]]></Code>
 						<SlopeType>angle</SlopeType>	
 					</Slope>
 
-					<Width>140</Width>
-					<Height>140</Height>
+					<Width>200</Width>
+					<Height>200</Height>
 					<Rotation>0.0</Rotation>
 				</RectangleNode>
 				<Image>
 					<Id>1761230389243</Id>
 					<Name><![CDATA[image]]></Name>
-					<X>460</X><Y>410</Y>
+					<X>960</X><Y>480</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5380,8 +5039,8 @@ storedCargoes.add(agent);]]></Code>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
-					<Width>140</Width>
-					<Height>140</Height>
+					<Width>200</Width>
+					<Height>200</Height>
 					<Rotation>270.0</Rotation>
 					<ImageFiles>
 						<ImageResourceReference>
@@ -5394,13 +5053,13 @@ storedCargoes.add(agent);]]></Code>
 				<Figure3D>
 					<Id>1761230659764</Id>
 					<Name><![CDATA[truck]]></Name>
-					<X>1200</X><Y>120</Y>
+					<X>1440</X><Y>130</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<X>1200</X><Y>120</Y><Z>0</Z>
+					<X>1440</X><Y>130</Y><Z>0</Z>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<ResourceReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
@@ -5431,13 +5090,13 @@ storedCargoes.add(agent);]]></Code>
 				<Figure3D>
 					<Id>1761230836137</Id>
 					<Name><![CDATA[truck1]]></Name>
-					<X>1200</X><Y>480</Y>
+					<X>1440</X><Y>630</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<X>1200</X><Y>480</Y><Z>0</Z>
+					<X>1440</X><Y>630</Y><Z>0</Z>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<ResourceReference>
 						<PackageName><![CDATA[warehouserobots]]></PackageName>
@@ -5469,7 +5128,7 @@ storedCargoes.add(agent);]]></Code>
 				<RectangleNode>
 					<Id>1761230906517</Id>
 					<Name><![CDATA[loadArea]]></Name>
-					<X>900</X><Y>440</Y>
+					<X>1120</X><Y>565</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5616,7 +5275,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761231038074</Id>
 					<Name><![CDATA[attractor17]]></Name>
-					<X>920</X><Y>460</Y>
+					<X>1145</X><Y>590</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5628,7 +5287,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761231038077</Id>
 					<Name><![CDATA[attractor18]]></Name>
-					<X>960</X><Y>460</Y>
+					<X>1220</X><Y>590</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5640,7 +5299,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761231038080</Id>
 					<Name><![CDATA[attractor19]]></Name>
-					<X>920</X><Y>500</Y>
+					<X>1145</X><Y>665</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5652,7 +5311,7 @@ storedCargoes.add(agent);]]></Code>
 				<Attractor>
 					<Id>1761231038083</Id>
 					<Name><![CDATA[attractor20]]></Name>
-					<X>960</X><Y>500</Y>
+					<X>1220</X><Y>665</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5679,21 +5338,21 @@ storedCargoes.add(agent);]]></Code>
 						<SlopeType>angle</SlopeType>	
 					</Slope>
 
-					<Width>80</Width>
-					<Height>80</Height>
+					<Width>125</Width>
+					<Height>125</Height>
 					<Rotation>0.0</Rotation>
 				</RectangleNode>
 				<Wall>
 					<Id>1761231565178</Id>
 					<Name><![CDATA[wall]]></Name>
-					<X>700</X><Y>0</Y>
+					<X>860</X><Y>10</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5703,22 +5362,22 @@ storedCargoes.add(agent);]]></Code>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>220</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>195</Y><Z>0</Z></Point>
-						<Point><X>20.801</X><Y>233.868</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>240</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>215</Y><Z>0</Z></Point>
+						<Point><X>20.801</X><Y>253.868</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<Wall>
 					<Id>1761231590491</Id>
 					<Name><![CDATA[wall1]]></Name>
-					<X>770</X><Y>460</Y>
+					<X>860</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5726,24 +5385,24 @@ storedCargoes.add(agent);]]></Code>
 					<Closed>false</Closed>
 					<Points>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>300</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>275</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>275</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>240</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>215</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>215</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<Wall>
 					<Id>1761231640637</Id>
 					<Name><![CDATA[wall2]]></Name>
-					<X>200</X><Y>380</Y>
+					<X>660</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5761,14 +5420,14 @@ storedCargoes.add(agent);]]></Code>
 				<Wall>
 					<Id>1761231708556</Id>
 					<Name><![CDATA[wall3]]></Name>
-					<X>200</X><Y>220</Y>
+					<X>340</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5778,22 +5437,22 @@ storedCargoes.add(agent);]]></Code>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>-25</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>-200</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>-175</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>-177.639</X><Y>11.18</Y><Z>0</Z></Point>
+						<Point><X>-80</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>-55</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>-57.63900000000001</X><Y>11.18</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<Wall>
 					<Id>1761302760831</Id>
 					<Name><![CDATA[wall4]]></Name>
-					<X>420</X><Y>460</Y>
+					<X>780</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5803,22 +5462,22 @@ storedCargoes.add(agent);]]></Code>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>240</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>215</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>222.322</X><Y>17.678</Y><Z>0</Z></Point>
+						<Point><X>80</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>55</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>62.322</X><Y>17.678</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<Wall>
 					<Id>1761302864207</Id>
 					<Name><![CDATA[wall6]]></Name>
-					<X>300</X><Y>220</Y>
+					<X>460</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5828,22 +5487,22 @@ storedCargoes.add(agent);]]></Code>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>140</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>115</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>115</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>200</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>175</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>175</X><Y>0</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<Wall>
 					<Id>1761302875461</Id>
 					<Name><![CDATA[wall7]]></Name>
-					<X>280</X><Y>460</Y>
+					<X>260</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5853,22 +5512,22 @@ storedCargoes.add(agent);]]></Code>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>-25</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>40</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>-30</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>80</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>55</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>10</X><Y>0</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<Wall>
 					<Id>1761302885475</Id>
 					<Name><![CDATA[wall8]]></Name>
-					<X>700</X><Y>220</Y>
+					<X>860</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -5876,45 +5535,20 @@ storedCargoes.add(agent);]]></Code>
 					<Closed>false</Closed>
 					<Points>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>-25</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>-25</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>-100</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>-75</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>70</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>-100</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>-80</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>-120</X><Y>0</Y><Z>0</Z></Point>
-					</Points>
-				</Wall>
-				<Wall>
-					<Id>1761302909063</Id>
-					<Name><![CDATA[wall9]]></Name>
-					<X>360</X><Y>0</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
-					<LineWidth>10</LineWidth>
-					<LineMaterial>null</LineMaterial>
-					<FillingType>HATCHED_AREA</FillingType>
-					<ZHeight>20</ZHeight>
-					<Closed>false</Closed>
-					<Points>
-						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>-25</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>220</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>195</Y><Z>0</Z></Point>
-						<Point><X>17.678</X><Y>202.322</Y><Z>0</Z></Point>
+						<Point><X>-75</X><Y>0</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<RackStorage>
 					<Id>1761303326107</Id>
 					<Name><![CDATA[storage1]]></Name>
-					<X>340</X><Y>570</Y>
+					<X>380</X><Y>620</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5998,7 +5632,7 @@ storedCargoes.add(agent);]]></Code>
 						</QuantityColumn>
 					</EmbeddedObject>
 					<Height Class="UnitValue">
-						<Value Class="Double">2.2</Value>
+						<Value Class="Double">2.4</Value>
 						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 					</Height>
 					<Width Class="UnitValue">
@@ -6018,7 +5652,7 @@ storedCargoes.add(agent);]]></Code>
 						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 					</SlotDepth>
 					<CellWidth Class="UnitValue">
-						<Value Class="Double">1.1</Value>
+						<Value Class="Double">1.2</Value>
 						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 					</CellWidth>
 					<ShelfHeight Class="UnitValue">
@@ -6050,14 +5684,14 @@ storedCargoes.add(agent);]]></Code>
 				<Wall>
 					<Id>1761305051530</Id>
 					<Name><![CDATA[wall11]]></Name>
-					<X>620</X><Y>760</Y>
+					<X>260</X><Y>750</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
+					<LineColor>-8355712</LineColor>
 					<LineWidth>10</LineWidth>
 					<LineMaterial>null</LineMaterial>
 					<FillingType>HATCHED_AREA</FillingType>
@@ -6067,47 +5701,22 @@ storedCargoes.add(agent);]]></Code>
 						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
 						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>360</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>335</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>335</X><Y>0</Y><Z>0</Z></Point>
-					</Points>
-				</Wall>
-				<Wall>
-					<Id>1761305099907</Id>
-					<Name><![CDATA[wall12]]></Name>
-					<X>270</X><Y>460</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<LineColor>-3308225</LineColor>
-					<LineWidth>10</LineWidth>
-					<LineMaterial>null</LineMaterial>
-					<FillingType>HATCHED_AREA</FillingType>
-					<ZHeight>20</ZHeight>
-					<Closed>false</Closed>
-					<Points>
-						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>300</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>275</Y><Z>0</Z></Point>
-						<Point><X>0</X><Y>275</Y><Z>0</Z></Point>
+						<Point><X>1000</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>975</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>975</X><Y>0</Y><Z>0</Z></Point>
 					</Points>
 				</Wall>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1761305913528</Id>
 					<Name><![CDATA[fireRestrictorTest]]></Name>
-					<X>940</X><Y>660</Y>
+					<X>0</X><Y>600</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="200" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -6129,13 +5738,13 @@ for(Storage storage: availableStorages) {
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[fire test]]></LabelText>
+						<LabelText><![CDATA[Сценарий пожара]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<RectangleNode>
 					<Id>1761376704889</Id>
-					<Name><![CDATA[testFireZone]]></Name>
-					<X>270</X><Y>460</Y>
+					<Name><![CDATA[section1]]></Name>
+					<X>260</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6246,7 +5855,7 @@ for(Storage storage: availableStorages) {
 					<Sloped>false</Sloped>
 					<Slope>
 						<Id>1761376704887</Id>
-						<Name><![CDATA[testFireZone]]></Name>
+						<Name><![CDATA[section1]]></Name>
 						<X>0</X><Y>10</Y>
 						<PublicFlag>false</PublicFlag>
 						<PresentationFlag>true</PresentationFlag>
@@ -6259,21 +5868,21 @@ for(Storage storage: availableStorages) {
 						<SlopeType>angle</SlopeType>	
 					</Slope>
 
-					<Width>250</Width>
-					<Height>300</Height>
+					<Width>300</Width>
+					<Height>240</Height>
 					<Rotation>0.0</Rotation>
 				</RectangleNode>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1761381895313</Id>
 					<Name><![CDATA[order]]></Name>
-					<X>940</X><Y>700</Y>
+					<X>0</X><Y>650</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="200" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -6282,13 +5891,13 @@ orderTask.take(order);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[order]]></LabelText>
+						<LabelText><![CDATA[Сценарий заказа]]></LabelText>
 					</ExtendedProperties>
 				</Control>
     			<PieChart>
 					<Id>1761382975732</Id>
 					<Name><![CDATA[botsChart]]></Name>
-					<X>1300</X><Y>940</Y>
+					<X>-30</X><Y>270</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6314,7 +5923,7 @@ orderTask.take(order);]]></ActionCode>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
-						<XOffset>50</XOffset>
+						<XOffset>60</XOffset>
 						<YOffset>10</YOffset>
 						<Width>140</Width>
 						<Height>140</Height>
@@ -6336,7 +5945,7 @@ orderTask.take(order);]]></ActionCode>
 				<RectangleNode>
 					<Id>1761406913075</Id>
 					<Name><![CDATA[safeZone]]></Name>
-					<X>220</X><Y>240</Y>
+					<X>260</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6435,190 +6044,6 @@ orderTask.take(order);]]></ActionCode>
 					<FillMaterial>null</FillMaterial>
 					<LineStyle>DASHED</LineStyle>
 					<AttractorsLayout>random</AttractorsLayout>
-
-			<Presentation>
-				<Attractor>
-					<Id>1761571364329</Id>
-					<Name><![CDATA[attractor27]]></Name>
-					<X>260</X><Y>273.3333333333333</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364332</Id>
-					<Name><![CDATA[attractor28]]></Name>
-					<X>300</X><Y>273.3333333333333</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364335</Id>
-					<Name><![CDATA[attractor29]]></Name>
-					<X>340</X><Y>273.3333333333333</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364338</Id>
-					<Name><![CDATA[attractor30]]></Name>
-					<X>260</X><Y>306.6666666666667</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364341</Id>
-					<Name><![CDATA[attractor31]]></Name>
-					<X>300</X><Y>306.6666666666667</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364344</Id>
-					<Name><![CDATA[attractor32]]></Name>
-					<X>340</X><Y>306.6666666666667</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364347</Id>
-					<Name><![CDATA[attractor33]]></Name>
-					<X>260</X><Y>340</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364350</Id>
-					<Name><![CDATA[attractor34]]></Name>
-					<X>300</X><Y>340</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364353</Id>
-					<Name><![CDATA[attractor35]]></Name>
-					<X>340</X><Y>340</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364356</Id>
-					<Name><![CDATA[attractor36]]></Name>
-					<X>260</X><Y>373.33333333333337</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364359</Id>
-					<Name><![CDATA[attractor37]]></Name>
-					<X>300</X><Y>373.33333333333337</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364362</Id>
-					<Name><![CDATA[attractor38]]></Name>
-					<X>340</X><Y>373.33333333333337</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364365</Id>
-					<Name><![CDATA[attractor39]]></Name>
-					<X>260</X><Y>406.6666666666667</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364368</Id>
-					<Name><![CDATA[attractor40]]></Name>
-					<X>300</X><Y>406.6666666666667</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-				<Attractor>
-					<Id>1761571364371</Id>
-					<Name><![CDATA[attractor41]]></Name>
-					<X>340</X><Y>406.6666666666667</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>	
-				</Attractor>
-			</Presentation>
-
 					<Sloped>false</Sloped>
 					<Slope>
 						<Id>1761406913073</Id>
@@ -6635,14 +6060,14 @@ orderTask.take(order);]]></ActionCode>
 						<SlopeType>angle</SlopeType>	
 					</Slope>
 
-					<Width>160</Width>
-					<Height>200</Height>
+					<Width>80</Width>
+					<Height>260</Height>
 					<Rotation>0.0</Rotation>
 				</RectangleNode>
     			<Histogram>
 					<Id>1761458960605</Id>
 					<Name><![CDATA[chart1]]></Name>
-					<X>980</X><Y>930</Y>
+					<X>-30</X><Y>10</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6697,19 +6122,19 @@ orderTask.take(order);]]></ActionCode>
 					<HistogramDataExpression>
 					<Id>1761458961616</Id>
 					<Expression><![CDATA[orderTaskTotalTime.distribution]]></Expression>
-						<ColorPDF>-65281</ColorPDF>
+						<ColorPDF>-16777088</ColorPDF>
 						<ColorCDF>-12004916</ColorCDF>
 						<ColorLowPercent>-14774017</ColorLowPercent>
 						<ColorHighPercent>-12799119</ColorHighPercent>
 						<ColorMean>-12799119</ColorMean>
 						<LineWidth>1</LineWidth>						
-						<Title><![CDATA[Среднее время выполнения заказа]]></Title>							
+						<Title><![CDATA[Среднее время сбора заказа]]></Title>							
 					</HistogramDataExpression>
     			</Histogram>
 				<RectangleNode>
 					<Id>1761487638179</Id>
-					<Name><![CDATA[fireZone2]]></Name>
-					<X>520</X><Y>460</Y>
+					<Name><![CDATA[section2]]></Name>
+					<X>560</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6817,7 +6242,7 @@ orderTask.take(order);]]></ActionCode>
 					<Sloped>false</Sloped>
 					<Slope>
 						<Id>1761487638177</Id>
-						<Name><![CDATA[fireZone2]]></Name>
+						<Name><![CDATA[section2]]></Name>
 						<X>0</X><Y>10</Y>
 						<PublicFlag>false</PublicFlag>
 						<PresentationFlag>true</PresentationFlag>
@@ -6830,14 +6255,14 @@ orderTask.take(order);]]></ActionCode>
 						<SlopeType>angle</SlopeType>	
 					</Slope>
 
-					<Width>250</Width>
-					<Height>300</Height>
+					<Width>300</Width>
+					<Height>240</Height>
 					<Rotation>0.0</Rotation>
 				</RectangleNode>
 				<RackStorage>
 					<Id>1761487974708</Id>
 					<Name><![CDATA[storage2]]></Name>
-					<X>580</X><Y>570</Y>
+					<X>620</X><Y>620</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6921,7 +6346,7 @@ orderTask.take(order);]]></ActionCode>
 						</QuantityColumn>
 					</EmbeddedObject>
 					<Height Class="UnitValue">
-						<Value Class="Double">2.2</Value>
+						<Value Class="Double">2.4</Value>
 						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 					</Height>
 					<Width Class="UnitValue">
@@ -6941,7 +6366,7 @@ orderTask.take(order);]]></ActionCode>
 						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 					</SlotDepth>
 					<CellWidth Class="UnitValue">
-						<Value Class="Double">1.1</Value>
+						<Value Class="Double">1.2</Value>
 						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 					</CellWidth>
 					<ShelfHeight Class="UnitValue">
@@ -6970,13 +6395,666 @@ orderTask.take(order);]]></ActionCode>
 					<SimplifiedAnimation>false</SimplifiedAnimation>
 					
 				</RackStorage>
+				<RackStorage>
+					<Id>1761632459820</Id>
+					<Name><![CDATA[storage3]]></Name>
+					<X>380</X><Y>20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<EmbeddedObject>
+						<Id>1761632459825</Id>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.modules.rack_system_module]]></PackageName>
+							<ClassName><![CDATA[StorageDescriptor]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.modules.rack_system_module]]></PackageName>
+								<ClassName><![CDATA[StorageDescriptor]]></ClassName>
+								<ItemName><![CDATA[1617869257419]]></ItemName>
+							</GenericParameterSubstituteReference>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[resourceLiftingSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[numberOfCellsPerSlot]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessSideAdd]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[cellCapacity]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[specifiedInslotSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[inslotSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[restrictedAisleAccess]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[aisleCapacityRestriction]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onAgentStorage]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onAgentRetrieval]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onReserve]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onRelease]]></Name>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1761632459824</Id>
+							<TableReference>
+							</TableReference>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn>
+						</QuantityColumn>
+					</EmbeddedObject>
+					<Height Class="UnitValue">
+						<Value Class="Double">2.4</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</Height>
+					<Width Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</Width>
+					<LeftPassage Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</LeftPassage>
+					<AisleWidth Class="UnitValue">
+						<Value Class="Double">0.41666666666666663</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</AisleWidth>
+					<SlotDepth Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</SlotDepth>
+					<CellWidth Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</CellWidth>
+					<ShelfHeight Class="UnitValue">
+						<Value Class="Double">1</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</ShelfHeight>
+					<PlaceAtSides>false</PlaceAtSides>
+					<OddAtTheLeft>true</OddAtTheLeft>
+					<FillColor>-1644806</FillColor>
+					<LineColor>-14774017</LineColor>
+					<Rotation>0.0</Rotation>
+					<Angle>0.0</Angle>
+					<Flipped>false</Flipped>
+					<IsObstacle>true</IsObstacle>
+					<UnitsDefinition>NUMBER_OF_UNITS</UnitsDefinition>
+					<NumberOfUnits>2</NumberOfUnits>
+					<BaysDefinition>NUMBER_OF_BAYS</BaysDefinition>
+					<NumberOfBays>2</NumberOfBays>
+					<NumberOfCells>1</NumberOfCells>
+					<NumberOfShelves>3</NumberOfShelves>
+					<RackType>SELECTIVE</RackType>
+					<SkuFlow>LIFO</SkuFlow>
+					<Configuration>BACK_TO_BACK</Configuration>
+					<DrawLegs>true</DrawLegs>
+					<CellsBetweenLegs>2</CellsBetweenLegs>
+					<SimplifiedAnimation>false</SimplifiedAnimation>
+					
+				</RackStorage>
+				<RackStorage>
+					<Id>1761632468253</Id>
+					<Name><![CDATA[storage4]]></Name>
+					<X>620</X><Y>20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<EmbeddedObject>
+						<Id>1761632468258</Id>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.modules.rack_system_module]]></PackageName>
+							<ClassName><![CDATA[StorageDescriptor]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.modules.rack_system_module]]></PackageName>
+								<ClassName><![CDATA[StorageDescriptor]]></ClassName>
+								<ItemName><![CDATA[1617869257419]]></ItemName>
+							</GenericParameterSubstituteReference>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[resourceLiftingSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[numberOfCellsPerSlot]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessSideAdd]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[cellCapacity]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[specifiedInslotSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[inslotSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[restrictedAisleAccess]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[aisleCapacityRestriction]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onAgentStorage]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onAgentRetrieval]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onReserve]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onRelease]]></Name>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1761632468257</Id>
+							<TableReference>
+							</TableReference>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn>
+						</QuantityColumn>
+					</EmbeddedObject>
+					<Height Class="UnitValue">
+						<Value Class="Double">2.4</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</Height>
+					<Width Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</Width>
+					<LeftPassage Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</LeftPassage>
+					<AisleWidth Class="UnitValue">
+						<Value Class="Double">0.41666666666666663</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</AisleWidth>
+					<SlotDepth Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</SlotDepth>
+					<CellWidth Class="UnitValue">
+						<Value Class="Double">1.2</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</CellWidth>
+					<ShelfHeight Class="UnitValue">
+						<Value Class="Double">1</Value>
+						<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+					</ShelfHeight>
+					<PlaceAtSides>false</PlaceAtSides>
+					<OddAtTheLeft>true</OddAtTheLeft>
+					<FillColor>-1644806</FillColor>
+					<LineColor>-14774017</LineColor>
+					<Rotation>0.0</Rotation>
+					<Angle>0.0</Angle>
+					<Flipped>false</Flipped>
+					<IsObstacle>true</IsObstacle>
+					<UnitsDefinition>NUMBER_OF_UNITS</UnitsDefinition>
+					<NumberOfUnits>2</NumberOfUnits>
+					<BaysDefinition>NUMBER_OF_BAYS</BaysDefinition>
+					<NumberOfBays>2</NumberOfBays>
+					<NumberOfCells>1</NumberOfCells>
+					<NumberOfShelves>3</NumberOfShelves>
+					<RackType>SELECTIVE</RackType>
+					<SkuFlow>LIFO</SkuFlow>
+					<Configuration>BACK_TO_BACK</Configuration>
+					<DrawLegs>true</DrawLegs>
+					<CellsBetweenLegs>2</CellsBetweenLegs>
+					<SimplifiedAnimation>false</SimplifiedAnimation>
+					
+				</RackStorage>
+				<Wall>
+					<Id>1761632486123</Id>
+					<Name><![CDATA[wall13]]></Name>
+					<X>260</X><Y>10</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LineColor>-8355712</LineColor>
+					<LineWidth>10</LineWidth>
+					<LineMaterial>null</LineMaterial>
+					<FillingType>HATCHED_AREA</FillingType>
+					<ZHeight>20</ZHeight>
+					<Closed>false</Closed>
+					<Points>
+						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>1000</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>975</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>975</X><Y>0</Y><Z>0</Z></Point>
+					</Points>
+				</Wall>
+				<Wall>
+					<Id>1761632612233</Id>
+					<Name><![CDATA[wall5]]></Name>
+					<X>260</X><Y>10</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LineColor>-8355712</LineColor>
+					<LineWidth>10</LineWidth>
+					<LineMaterial>null</LineMaterial>
+					<FillingType>HATCHED_AREA</FillingType>
+					<ZHeight>20</ZHeight>
+					<Closed>false</Closed>
+					<Points>
+						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>740</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>715</Y><Z>0</Z></Point>
+						<Point><X>20.801</X><Y>753.868</Y><Z>0</Z></Point>
+					</Points>
+				</Wall>
+				<RectangleNode>
+					<Id>1761632626869</Id>
+					<Name><![CDATA[section3]]></Name>
+					<X>260</X><Y>10</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<EmbeddedObject>
+						<Id>1761632626874</Id>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></PackageName>
+							<ClassName><![CDATA[AreaNodeDescriptor]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></PackageName>
+								<ClassName><![CDATA[AreaNodeDescriptor]]></ClassName>
+								<ItemName><![CDATA[1574694148121]]></ItemName>
+							</GenericParameterSubstituteReference>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[appliedClass]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[speedRestricted]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[maxSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessRestricted]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[true]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessRestrictionType]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessRestrictionCondition]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[capacity]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[999]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[throughput]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[schedule]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[avoidedIfClosed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onEnter]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onEnterDenied]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onExit]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onOpen]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onClose]]></Name>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1761632626873</Id>
+							<TableReference>
+							</TableReference>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn>
+						</QuantityColumn>
+					</EmbeddedObject>
+					<LineColor>-1</LineColor>
+					<FillColor/>
+					<LineWidth>1</LineWidth>
+					<LineMaterial>null</LineMaterial>
+					<FillMaterial>null</FillMaterial>
+					<LineStyle>DASHED</LineStyle>
+					<AttractorsLayout>random</AttractorsLayout>
+					<Sloped>false</Sloped>
+					<Slope>
+						<Id>1761632626867</Id>
+						<Name><![CDATA[section3]]></Name>
+						<X>0</X><Y>10</Y>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Dx>20</Dx>
+						<Dy>0</Dy>
+						<Dz>0</Dz>
+						<AngleX>30</AngleX>
+						<AngleZ>0</AngleZ>
+						<SlopeType>angle</SlopeType>	
+					</Slope>
+
+					<Width>300</Width>
+					<Height>240</Height>
+					<Rotation>0.0</Rotation>
+				</RectangleNode>
+				<RectangleNode>
+					<Id>1761632653232</Id>
+					<Name><![CDATA[section4]]></Name>
+					<X>560</X><Y>10</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<EmbeddedObject>
+						<Id>1761632653237</Id>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></PackageName>
+							<ClassName><![CDATA[AreaNodeDescriptor]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></PackageName>
+								<ClassName><![CDATA[AreaNodeDescriptor]]></ClassName>
+								<ItemName><![CDATA[1574694148121]]></ItemName>
+							</GenericParameterSubstituteReference>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[appliedClass]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[speedRestricted]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[maxSpeed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessRestricted]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[true]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessRestrictionType]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[accessRestrictionCondition]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[capacity]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[999]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[throughput]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[schedule]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[avoidedIfClosed]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onEnter]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onEnterDenied]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onExit]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onOpen]]></Name>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onClose]]></Name>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1761632653236</Id>
+							<TableReference>
+							</TableReference>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn>
+						</QuantityColumn>
+					</EmbeddedObject>
+					<LineColor>-1</LineColor>
+					<FillColor/>
+					<LineWidth>1</LineWidth>
+					<LineMaterial>null</LineMaterial>
+					<FillMaterial>null</FillMaterial>
+					<LineStyle>DASHED</LineStyle>
+					<AttractorsLayout>random</AttractorsLayout>
+					<Sloped>false</Sloped>
+					<Slope>
+						<Id>1761632653230</Id>
+						<Name><![CDATA[section4]]></Name>
+						<X>0</X><Y>10</Y>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Dx>20</Dx>
+						<Dy>0</Dy>
+						<Dz>0</Dz>
+						<AngleX>30</AngleX>
+						<AngleZ>0</AngleZ>
+						<SlopeType>angle</SlopeType>	
+					</Slope>
+
+					<Width>300</Width>
+					<Height>240</Height>
+					<Rotation>0.0</Rotation>
+				</RectangleNode>
+				<Wall>
+					<Id>1761634002204</Id>
+					<Name><![CDATA[wall9]]></Name>
+					<X>1260</X><Y>10</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LineColor>-8355712</LineColor>
+					<LineWidth>10</LineWidth>
+					<LineMaterial>null</LineMaterial>
+					<FillingType>HATCHED_AREA</FillingType>
+					<ZHeight>20</ZHeight>
+					<Closed>false</Closed>
+					<Points>
+						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>40</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>15</Y><Z>0</Z></Point>
+						<Point><X>20.801</X><Y>53.868</Y><Z>0</Z></Point>
+					</Points>
+				</Wall>
+				<Wall>
+					<Id>1761634022689</Id>
+					<Name><![CDATA[wall10]]></Name>
+					<X>1260</X><Y>690</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LineColor>-8355712</LineColor>
+					<LineWidth>10</LineWidth>
+					<LineMaterial>null</LineMaterial>
+					<FillingType>HATCHED_AREA</FillingType>
+					<ZHeight>20</ZHeight>
+					<Closed>false</Closed>
+					<Points>
+						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>60</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>35</Y><Z>0</Z></Point>
+						<Point><X>20.801</X><Y>73.868</Y><Z>0</Z></Point>
+					</Points>
+				</Wall>
+				<Wall>
+					<Id>1761634027803</Id>
+					<Name><![CDATA[wall12]]></Name>
+					<X>1260</X><Y>195</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LineColor>-8355712</LineColor>
+					<LineWidth>10</LineWidth>
+					<LineMaterial>null</LineMaterial>
+					<FillingType>HATCHED_AREA</FillingType>
+					<ZHeight>20</ZHeight>
+					<Closed>false</Closed>
+					<Points>
+						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>15</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>25</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>370</Y><Z>0</Z></Point>
+						<Point><X>0</X><Y>345</Y><Z>0</Z></Point>
+						<Point><X>20.801</X><Y>383.868</Y><Z>0</Z></Point>
+					</Points>
+				</Wall>
 			</Presentation>
 
 				</Level>
 				<EmbeddedObjectPresentation>
 					<Id>1761225932523</Id>
 					<Name><![CDATA[bots_presentation]]></Name>
-					<X>790</X><Y>860</Y>
+					<X>0</X><Y>10</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7035,7 +7113,7 @@ orderTask.take(order);]]></ActionCode>
 			<Id>1760609935439</Id>
 			<Name><![CDATA[Bot]]></Name>
 			<StartupCode><![CDATA[busyTime = new DataItem();
-busyTime.setValue(1);]]></StartupCode>
+busyTime.setValue(0);]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1760609935444</Id>
@@ -7061,22 +7139,22 @@ busyTime.setValue(1);]]></StartupCode>
 					<Code><![CDATA[10]]></Code>
 					<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
 				</VelocityCode>
-				<OnEnterFlowchartBlock><![CDATA[workStartTime = time();
+				<OnEnterFlowchartBlock><![CDATA[//workStartTime = time();
 // traceln("Транспортер " + this + " захвачен в: " + workStartTime);]]></OnEnterFlowchartBlock>
-				<OnExitFlowchartBlock><![CDATA[double busyInterval = time() - workStartTime;
+				<OnExitFlowchartBlock><![CDATA[//double busyInterval = time() - workStartTime;
 // traceln("Транспортер " + this + " освобожден через: " + busyInterval);
 
-busyTime.setValue(busyTime.getValue() + busyInterval);]]></OnExitFlowchartBlock>
+//busyTime.setValue(busyTime.getValue() + busyInterval);]]></OnExitFlowchartBlock>
 				<PhysicalLength Class="CodeUnitValue">
-					<Code><![CDATA[1]]></Code>
+					<Code><![CDATA[0.5]]></Code>
 					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 				</PhysicalLength>
 				<PhysicalWidth Class="CodeUnitValue">
-					<Code><![CDATA[1]]></Code>
+					<Code><![CDATA[0.5]]></Code>
 					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 				</PhysicalWidth>
 				<PhysicalHeight Class="CodeUnitValue">
-					<Code><![CDATA[1]]></Code>
+					<Code><![CDATA[0.5]]></Code>
 					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 				</PhysicalHeight>
 			</AgentProperties>
@@ -7170,7 +7248,7 @@ busyTime.setValue(busyTime.getValue() + busyInterval);]]></OnExitFlowchartBlock>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1761483738774</Id>
+					<Id>1761642009454</Id>
 					<Name><![CDATA[workStartTime]]></Name>
 					<X>-140</X><Y>140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
@@ -7179,9 +7257,6 @@ busyTime.setValue(busyTime.getValue() + busyInterval);]]></OnExitFlowchartBlock>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
 					</Properties>
 				</Variable>
 			</Variables>
@@ -7501,7 +7576,7 @@ outputValve.open();]]></ExitAction>
 					</Points>
 					<IconOffset>50.0</IconOffset>
 					<Properties Source="1761134103447" Target="1761134066704" Trigger="timeout">
-						<Action><![CDATA[main.delay.stopDelay(currentChargeTask);]]></Action>
+						<Action><![CDATA[main.charging.stopDelay(currentChargeTask);]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
@@ -7675,7 +7750,7 @@ outputValve.open();]]></ExitAction>
 								<Code><![CDATA[traceln("Требуется зарядка для бота #" + this);
 currentChargeTask = new ChargeTask(this);
 traceln("#" + currentChargeTask.bot);
-main.enter.take(currentChargeTask);]]></Code>
+main.chargeTaskEnter.take(currentChargeTask);]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -8089,30 +8164,7 @@ main.enter.take(currentChargeTask);]]></Code>
 		<ActiveObjectClass>
 			<Id>1760613446076</Id>
 			<Name><![CDATA[Cargo]]></Name>
-			<StartupCode><![CDATA[String materialName = "MA_material_27";
-int roll = uniform_discr(0, 100);
-
-
-if (roll <= 50) {
-	box.setColor(materialName, new Color(150,150,150));
-    value = 1;
-} else if (roll <= 75) {
-	box.setColor(materialName, new Color(61,210,11));
-    value = 2;
-} else if (roll <= 90) {
-	box.setColor(materialName, new Color(47,120,255));
-    value = 3;
-} else if (roll <= 96) {
-	box.setColor(materialName, new Color(171,70,255));
-    value = 4;
-} else {
-	box.setColor(materialName, new Color(255,180,0));
-    value = 5;
-}	
-
-
-
-]]></StartupCode>
+			<StartupCode><![CDATA[setRandomValue();]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1760613446081</Id>
@@ -8205,21 +8257,9 @@ if (roll <= 50) {
 			<ConnectionsId>1760613446077</ConnectionsId>
 			<Variables>
 				<Variable Class="PlainVariable">
-					<Id>1760886498534</Id>
-					<Name><![CDATA[id]]></Name>
-					<X>20</X><Y>20</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1760886517705</Id>
 					<Name><![CDATA[value]]></Name>
-					<X>20</X><Y>50</Y>
+					<X>20</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -8234,7 +8274,7 @@ if (roll <= 50) {
 				<Variable Class="PlainVariable">
 					<Id>1761462883075</Id>
 					<Name><![CDATA[currentTask]]></Name>
-					<X>20</X><Y>80</Y>
+					<X>20</X><Y>50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -8244,6 +8284,41 @@ if (roll <= 50) {
 					</Properties>
 				</Variable>
 			</Variables>
+			<Functions>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1761640279774</Id>
+					<Name><![CDATA[setRandomValue]]></Name>
+					<X>20</X><Y>80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[int roll = uniform_discr(0, 100);
+
+if (roll <= 50) {
+	appearance.setFillColor(new Color(150,150,150));
+    value = 1;
+} else if (roll <= 75) {
+	appearance.setFillColor(new Color(61,210,11));
+    value = 2;
+} else if (roll <= 90) {
+	appearance.setFillColor(new Color(47,120,255));
+    value = 3;
+} else if (roll <= 96) {
+	appearance.setFillColor(new Color(171,70,255));
+    value = 4;
+} else {
+	appearance.setFillColor(new Color(255,180,0));
+    value = 5;
+}	
+
+
+
+]]></Body>
+				</Function>
+			</Functions>
 			<AgentLinks>
 				<AgentLink>
 					<Id>1760613446077</Id>
@@ -8281,41 +8356,28 @@ if (roll <= 50) {
 					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
 
 			<Presentation>
-				<Figure3D>
-					<Id>1760613446126</Id>
-					<Name><![CDATA[box]]></Name>
-					<X>0</X><Y>0</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
+				<Rectangle>
+					<Id>1761639967779</Id>
+					<Name><![CDATA[appearance]]></Name>
+					<X>-3</X><Y>-3</Y>
+					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<X>0</X><Y>0</Y><Z>0</Z>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<ResourceReference>
-						<PackageName><![CDATA[warehouserobots]]></PackageName>
-						<ClassName><![CDATA[3d/box_1_closed.dae]]></ClassName>
-					</ResourceReference>
-					<ColorTable>
-						<ColorMapping>
-							<Name><![CDATA[MA_material_27]]></Name>
-							<OriginalColor>-2107044</OriginalColor>
-							<Color>-3308225</Color>
-						</ColorMapping>
-						<ColorMapping>
-							<Name><![CDATA[MA_material_28]]></Name>
-							<OriginalColor>-7172293</OriginalColor>
-							<Color>-10496</Color>
-						</ColorMapping>
-					</ColorTable>
-					<AutoScale>true</AutoScale>
-					<Scale>1.0</Scale>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>5</ZHeight>
+					<LineWidth>0</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>5</Width>
+					<Height>5</Height>
 					<Rotation>0.0</Rotation>
-					<AxisOrder>XYZ_AXIS_ORDER</AxisOrder>
-					<ApplyShading>true</ApplyShading>
-					<InternalLighting>OFF</InternalLighting>
-					<IgnoreSceneLights>false</IgnoreSceneLights>
-</Figure3D>
+					<FillColor>-4565549</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
 			</Presentation>
 
 				</Level>
@@ -8670,8 +8732,7 @@ main.storedCargoes.removeAll(randomElements);
 
 for(Cargo cargo : randomElements) {
 	cargo.currentTask = this;
-	main.cargoLoadingTask.take(cargo);
-    traceln(cargo);
+	main.loadTaskEnter.take(cargo);
 }]]></Action>
 					</Properties>	
 				</StatechartElement>
@@ -9231,7 +9292,7 @@ main.availableStorages.add(storage);
 					<Body><![CDATA[for (Agent agent: storage.getAgents()) {
 	Cargo cargo = (Cargo) agent;
 	traceln("агент внутри склада: " + cargo.getName());
-	main.cargoRescueTaskEnter.take((Cargo) agent);
+	main.rescueTaskEnter.take((Cargo) agent);
 }]]></Body>
 				</Function>
 			</Functions>
@@ -9307,8 +9368,8 @@ main.availableStorages.add(storage);
 	<InspectionWindowColorTheme>DEFAULT</InspectionWindowColorTheme>
 	<Frame>
 		<Id>1760541570475</Id>
-		<Width>1000</Width>
-		<Height>600</Height>
+		<Width>1260</Width>
+		<Height>760</Height>
 	</Frame>
 	<Database>
 		<Id>1760541570474</Id>
@@ -9407,12 +9468,6 @@ main.availableStorages.add(storage);
 		<Resource>
 			<Id>1760541754839</Id>
 			<Path><![CDATA[3d/agv.dae]]></Path>
-			<ReferencedFromUserCode>false</ReferencedFromUserCode>
-			<Location>FILE_SYSTEM</Location>
-		</Resource>
-		<Resource>
-			<Id>1760542457763</Id>
-			<Path><![CDATA[3d/box_1_closed.dae]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
